@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "People List";
+}
+
+<h1>List of all people</h1>
+
+<table class="table table-dark">
+    <tr>
+        <th>Name</th>
+        <th>Favorite Color</th>
+        <th>Second Favorite Color</th>
+    </tr>
+    <!--Creates a new table row per person in the people list-->
+    @foreach (Person person in ViewBag.people)
+    {
+        <tr>
+            <td>@person.Name</td>
+            <td>@person.Color1</td>
+            <td>@person.Color2</td>
+        </tr>
+    }
+</table>

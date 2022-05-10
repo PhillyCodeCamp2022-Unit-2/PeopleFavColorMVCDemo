@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "People Form";
+}
+
+<h1>Add person to database</h1>
+<!--People data: name, fav color 1, fav color 2-->
+<form method="post" action="/lmao">
+    <label> Name:
+        <input type="text" name="name" />
+    </label>
+    <label> Favorite Color:
+        <input type="text" name="color1" />
+    </label>
+    <label> Second Favorite Color:
+        <input type="text" name="color2" />
+    </label>
+    <input type="submit" value="Add Person"/>
+</form>
