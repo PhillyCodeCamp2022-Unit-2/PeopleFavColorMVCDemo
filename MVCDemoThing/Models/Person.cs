@@ -7,6 +7,8 @@
         public string Color1 { get; set; }
         public string Color2 { get; set; }
 
+        public Person() { }
+
         public Person(string name, string color1, string color2)
         {
             Name = name;

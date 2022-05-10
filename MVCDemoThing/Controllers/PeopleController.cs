@@ -9,6 +9,10 @@ namespace MVCDemoThing.Controllers
         // [Route("/people/index")]
         public IActionResult Index()
         {
+            // We need to drop the people list into the ViewBag here as well, so that all the people in our application
+            // get displayed even when we aren't navigating to this page through submitting the form
+            ViewBag.people = PersonData.people;
+
             return View();
         }
 
@@ -23,10 +27,10 @@ namespace MVCDemoThing.Controllers
         // render the people/index view!
         [HttpPost]
         [Route("/lmao")]
-        public IActionResult AddPerson(string name, string color1, string color2)
+        public IActionResult AddPerson(Person newPerson)
         {
             // let's create a new instance of Person using the 3 pieces of information from the form
-            Person newPerson = new Person(name, color1, color2);
+            //Person newPerson = new Person(name, color1, color2);
 
             // now we want to be able to store our newPerson object somewhere to be used later in our application
             // instead of just being dropped into the ViewBag and then being forgotten since ViewBag is kind of this one way transaction
