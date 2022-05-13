@@ -1,18 +1,27 @@
-﻿@{
+﻿@using MVCDemoThing.ViewModels;
+@model AddPersonViewModel;
+
+@{
     ViewData["Title"] = "People Form";
 }
 
 <h1>Add person to database</h1>
 <!--People data: name, fav color 1, fav color 2-->
 <form method="post">
-    <label> Name:
-        <input type="text" name="name" />
+    <label asp-for="Name"> Name:
+        <input type="text" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
     </label>
-    <label> Favorite Color:
-        <input type="text" name="color1" />
+    <br />
+    <label asp-for="Color1"> Favorite Color:
+        <input type="text" asp-for="Color1" />
+        <span asp-validation-for="Color1"></span>
     </label>
-    <label> Second Favorite Color:
-        <input type="text" name="color2" />
+    <br />
+    <label asp-for="Color2"> Second Favorite Color:
+        <input type="text" asp-for="Color2" />
+        <span asp-validation-for="Color2"></span>
     </label>
+    <br />
     <input type="submit" value="Add Person"/>
 </form>
