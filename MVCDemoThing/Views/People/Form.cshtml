@@ -7,7 +7,12 @@
 
 <h1>Add person to database</h1>
 <!--People data: name, fav color 1, fav color 2-->
-<form method="post">
+<!--asp-controller specifies the controller that this form is bound to
+    asp-action specifies the action method in the controller that this form will
+    trigger when it is submit, in other words, the form will the send the post request
+    to the method specified in asp-action
+-->
+<form asp-controller="People" asp-action="AddPerson" method="post">
     <label asp-for="Name"> Name:
         <input type="text" asp-for="Name" />
         <span asp-validation-for="Name"></span>

@@ -20,14 +20,14 @@ namespace MVCDemoThing.Controllers
         // [Route("/people/form")]
         public IActionResult Form()
         {
-            return View();
+            AddPersonViewModel viewModel = new AddPersonViewModel();
+            return View(viewModel);
         }
 
         // handle this post request that is getting sent to /lmao by the form
         // display list of people after having added a person
         // render the people/index view!
         [HttpPost]
-        [Route("/people/form")]
         public IActionResult AddPerson(AddPersonViewModel viewModel)
         {
             //if (viewModel.Name == null) { etc...} 
@@ -36,7 +36,7 @@ namespace MVCDemoThing.Controllers
             // re-render the form page
             if (!ModelState.IsValid)
             {
-                return View("Form");
+                return View("Form", viewModel);
             }
 
             // if model state IS valid, then we can move past that if statement and execute the rest of our code as normal
@@ -51,7 +51,9 @@ namespace MVCDemoThing.Controllers
             PersonData.Add(newPerson);
 
             // Now we can drop the people list into the ViewBag, and then loop through the list to display all of the people in the list
-            ViewBag.people = PersonData.people;
+            // Since we are now redirecting to /people/index instead of directly rendering the index view, we don't need to drop people
+            // into the viewbag anymore because that is already handled by the Index action method
+            //ViewBag.people = PersonData.people;
             
 
             // let's take the name, color1, and color2 data and make it accessible by the Index view
@@ -60,7 +62,7 @@ namespace MVCDemoThing.Controllers
             //ViewBag.color1 = color1;
             //ViewBag.color2 = color2;
 
-            return View("Index");
+            return Redirect("Index");
         }
     }
 }
