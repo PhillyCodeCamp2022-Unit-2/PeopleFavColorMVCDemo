@@ -26,7 +26,7 @@ namespace MVCDemoThing.Controllers
         // display list of people after having added a person
         // render the people/index view!
         [HttpPost]
-        [Route("/lmao")]
+        [Route("/people/form")]
         public IActionResult AddPerson(Person newPerson)
         {
             // let's create a new instance of Person using the 3 pieces of information from the form
