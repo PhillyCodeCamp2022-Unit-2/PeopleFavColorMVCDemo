@@ -2,17 +2,26 @@
 using MVCDemoThing.Data;
 using MVCDemoThing.Models;
 using MVCDemoThing.ViewModels;
+using System.Linq;
 
 namespace MVCDemoThing.Controllers
 {
     public class PeopleController : Controller
     {
+        private PersonDbContext context;
+
+        public PeopleController(PersonDbContext personDbContext)
+        {
+            context = personDbContext;
+        }
+
         // [Route("/people/index")]
         public IActionResult Index()
         {
             // We need to drop the people list into the ViewBag here as well, so that all the people in our application
             // get displayed even when we aren't navigating to this page through submitting the form
-            ViewBag.people = PersonData.people;
+            //ViewBag.people = PersonData.people;
+            ViewBag.people = context.People.ToList();
 
             return View();
         }
@@ -48,7 +57,14 @@ namespace MVCDemoThing.Controllers
 
             // now we want to be able to store our newPerson object somewhere to be used later in our application
             // instead of just being dropped into the ViewBag and then being forgotten since ViewBag is kind of this one way transaction
-            PersonData.Add(newPerson);
+            //PersonData.Add(newPerson);
+
+            // Instead of adding our new person object into the PersonData people list which isn't persistent
+            // we instead opt to add our new person object directly into our database via context
+            context.People.Add(newPerson);
+            // Think of context.People.Add etc... like staging our newPerson to be committed to the database
+            // Think of context.SaveChanges() like running committing our newPerson to the database
+            context.SaveChanges();
 
             // Now we can drop the people list into the ViewBag, and then loop through the list to display all of the people in the list
             // Since we are now redirecting to /people/index instead of directly rendering the index view, we don't need to drop people
