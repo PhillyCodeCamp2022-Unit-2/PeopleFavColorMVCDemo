@@ -2,6 +2,8 @@
 {
     public class Person
     {
+        // this Id property will be used as the primary key for the People table
+        public int Id { get; set; }
         // name, color1, color2
         public string Name { get; set; }
         public string Color1 { get; set; }
