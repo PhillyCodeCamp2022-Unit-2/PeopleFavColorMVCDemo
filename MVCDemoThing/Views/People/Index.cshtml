@@ -1,4 +1,7 @@
-﻿@{
+﻿@using MVCDemoThing.Models;
+@model List<Person>;
+
+@{
     ViewData["Title"] = "People List";
 }
 
@@ -17,7 +20,7 @@
     </tr>
 
     <!--Creates a new table row per person in the people list-->
-    @foreach (Person person in ViewBag.people)
+    @foreach (Person person in Model)
     {
         <tr>
             <td>@person.Name</td>

@@ -2,6 +2,7 @@
 using MVCDemoThing.Data;
 using MVCDemoThing.Models;
 using MVCDemoThing.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MVCDemoThing.Controllers
@@ -21,9 +22,10 @@ namespace MVCDemoThing.Controllers
             // We need to drop the people list into the ViewBag here as well, so that all the people in our application
             // get displayed even when we aren't navigating to this page through submitting the form
             //ViewBag.people = PersonData.people;
-            ViewBag.people = context.People.ToList();
+            //ViewBag.people = context.People.ToList();
+            List<Person> people = context.People.ToList();
 
-            return View();
+            return View(people);
         }
 
         // [Route("/people/form")]
