@@ -55,7 +55,7 @@ namespace MVCDemoThing.Controllers
 
             // let's create a new instance of Person using the 3 pieces of information from the form
             // Person newPerson = new Person(name, color1, color2);
-            Person newPerson = new Person(viewModel.Name, viewModel.Color1, viewModel.Color2);
+            //Person newPerson = new Person(viewModel.Name, viewModel.Color1, viewModel.Color2);
 
             // now we want to be able to store our newPerson object somewhere to be used later in our application
             // instead of just being dropped into the ViewBag and then being forgotten since ViewBag is kind of this one way transaction
@@ -63,10 +63,10 @@ namespace MVCDemoThing.Controllers
 
             // Instead of adding our new person object into the PersonData people list which isn't persistent
             // we instead opt to add our new person object directly into our database via context
-            context.People.Add(newPerson);
+            //context.People.Add(newPerson);
             // Think of context.People.Add etc... like staging our newPerson to be committed to the database
             // Think of context.SaveChanges() like running committing our newPerson to the database
-            context.SaveChanges();
+            //context.SaveChanges();
 
             // Now we can drop the people list into the ViewBag, and then loop through the list to display all of the people in the list
             // Since we are now redirecting to /people/index instead of directly rendering the index view, we don't need to drop people

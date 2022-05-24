@@ -1,0 +1,30 @@
+﻿@using MVCDemoThing.Models;
+@model List<FavoriteColors>;
+
+@{
+    ViewData["Title"] = "Favorite Color sets";
+}
+
+<h1>List of all favorite color sets</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No sets of favorite colors have been added yet!</p>
+}
+
+<table class="table table-dark">
+    <tr>
+        <th>Id</th>
+        <th>Favorite Color</th>
+        <th>Second Favorite Color</th>
+    </tr>
+
+    @foreach (FavoriteColors favColorSet in Model)
+    {
+        <tr>
+            <td>@favColorSet.Id</td>
+            <td>@favColorSet.FavColor</td>
+            <td>@favColorSet.SecondFavColor</td>
+        </tr>
+    }
+</table>

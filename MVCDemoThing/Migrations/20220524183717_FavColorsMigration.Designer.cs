@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCDemoThing.Migrations
 {
     [DbContext(typeof(PersonDbContext))]
-    [Migration("20220523220819_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220524183717_FavColorsMigration")]
+    partial class FavColorsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,24 +18,49 @@ namespace MVCDemoThing.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("MVCDemoThing.Models.FavoriteColors", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("FavColor")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("SecondFavColor")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FavoriteColorSets");
+                });
+
             modelBuilder.Entity("MVCDemoThing.Models.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Color1")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Color2")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("FavoriteColorsId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FavoriteColorsId");
+
                     b.ToTable("People");
+                });
+
+            modelBuilder.Entity("MVCDemoThing.Models.Person", b =>
+                {
+                    b.HasOne("MVCDemoThing.Models.FavoriteColors", "FavoriteColors")
+                        .WithMany()
+                        .HasForeignKey("FavoriteColorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
