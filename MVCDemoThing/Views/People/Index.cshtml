@@ -7,7 +7,7 @@
 
 <h1>List of all people</h1>
 
-@if (ViewBag.people.Count == 0)
+@if (Model.Count == 0)
 {
     <p>No people have been added yet!</p>
 }
@@ -20,6 +20,7 @@
     </tr>
 
     <!--Creates a new table row per person in the people list-->
+    <!--Model replaces ViewBag.people-->
     @foreach (Person person in Model)
     {
         <tr>
